@@ -127,3 +127,32 @@ header #title {
     grid-area: 1 / span 2;
     width: 50%;
 }
+
+/* Scores area */
+#score-area {
+    margin: auto;
+    width: 60%;
+    margin-top: 20px;
+}
+
+#pokemon-found,
+#times-trapped {
+    background-color: #84d07d;
+    border: 3px solid #111;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#reset-button {
+    display: block;
+    color: white;
+    background-color: #28abfd;
+    border: 2px solid #134b5f;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 2rem;
+    margin: auto;
+    font-family: 'VT323', monospace;
+}
