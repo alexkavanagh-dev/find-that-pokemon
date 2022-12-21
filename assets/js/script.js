@@ -67,6 +67,10 @@ function handleKeyboardInput(input, answer) {
 
     console.log(answer);
     console.log(input.innerText + " button works!");
+
+    input.style.color = "#28abfd";
+    input.setAttribute("disabled", "");
+
 }
 
 function incrementFound() {
