@@ -52,6 +52,10 @@ header #title {
 }
 
 #right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     position: relative;
     top: 10%;
     width: 49%;
@@ -155,4 +159,46 @@ header #title {
     font-size: 2rem;
     margin: auto;
     font-family: 'VT323', monospace;
+}
+
+/* Answer screen */
+#answer-screen {
+    width: 400px;
+    height: 100px;
+    background-color: #111;
+    color: white;
+    border-radius: 5px;
+    font-size: 3rem;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#answer {
+    margin-top: 25px;
+}
+
+/* Input keyboard */
+#input-keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 40%;
+}
+
+#input-keyboard button {
+    font-family: 'VT323', monospace;
+    font-size: 3rem;
+    margin: 2px;
+    color: white;
+    background-color: #28abfd;
+    border: 2px solid #134b5f;
+    width: 40px;
+    border-radius: 5px;
+}
+
+#first-row, 
+#second-row, 
+#third-row {
+    display: flex;
+    flex-direction: row;
 }
