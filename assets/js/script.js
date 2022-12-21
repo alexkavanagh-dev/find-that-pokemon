@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     createInputKeyboard();
 
+    let keyboardButtons = document.getElementsByClassName('letter');
+
+    for (let button of keyboardButtons) {
+        button.addEventListener("click", handleKeyboardInput);
+    }
+
+    let resetButton = document.getElementById('reset-button');
+    resetButton.addEventListener("click", handleKeyboardInput)
+
 })
 
 function createInputKeyboard() {
@@ -22,7 +31,17 @@ function createInputKeyboard() {
         } else {
             thirdRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
         }
-    
-    }
-    
+    }  
+};
+
+function handleKeyboardInput(e) {
+    e.preventDefault();
+
+    console.log(this.innerText + " button works!");
+}
+
+function resetGame(e) {
+    e.preventDefault();
+
+    console.log(this.innerText + " button works!");
 }
