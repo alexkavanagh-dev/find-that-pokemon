@@ -99,3 +99,31 @@ header #title {
 #green-light {
     background-color: green;
 }
+
+/* Animation screen */
+#animation-screen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+    height: 450px;
+    border-radius: 5px;
+    border: 8px solid #111;
+    background-color: whitesmoke;
+}
+
+#meowth {
+    margin: auto;
+    width: 50%;
+}
+
+#trap {
+    margin: auto;
+    width: 50%;
+}
+
+#balloons {
+    grid-area: 1 / span 2;
+    width: 50%;
+}
