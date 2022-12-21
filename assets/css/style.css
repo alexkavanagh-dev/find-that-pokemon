@@ -19,6 +19,83 @@ header #title {
     max-width: 800px;
     margin: auto;
     font-size: 5rem;
+    text-align: center;
     text-shadow: 3px 3px black;
     color: white;
+}
+
+/* Game area (PokeDex) */
+#pokedex {
+    margin: auto;
+    margin-top: 50px;
+    max-width: 1000px;
+    height: 750px;
+    display: flex;
+    flex-direction: row;
+}
+
+#left-panel {
+    width: 49%;
+    height: 100%;
+    border: 4px solid #111;
+    border-radius: 5px;
+    background-color: crimson;
+}
+
+#hinge {
+    width: 2%;
+    height: 100%;
+    border: 3px solid #111;
+    border-radius: 5px;
+    background-color: crimson;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), crimson, rgba(0, 0, 0, 0.5));
+}
+
+#right-panel {
+    position: relative;
+    top: 10%;
+    width: 49%;
+    height: 90%;
+    border: 4px solid #111;
+    border-radius: 5px;
+    background-color: crimson;
+}
+
+#top-lights {
+    height: 7%;
+    display: flex;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-bottom: 4px solid #111;
+}
+
+#blue-light {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: lightsteelblue;
+    border: 4px solid #111;
+}
+
+#red-light,
+#yellow-light, 
+#green-light {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 3px solid #111;
+}
+
+#red-light {
+    background-color: red;
+}
+
+#yellow-light {
+    background-color: yellow;
+}
+
+#green-light {
+    background-color: green;
 }
