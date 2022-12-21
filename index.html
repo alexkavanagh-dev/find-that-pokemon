@@ -9,13 +9,74 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
-    
+
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Find That Pokemon!</title>
 </head>
 <body>
     
+    <!-- Game title -->
+    <header>
+        <h1 id="title">Find That Pokemon!</h1>
+    </header>
+
+    <!-- Game Area -->
+    <div id="pokedex">
+
+        <!-- Left Panel -->
+        <div id="left-panel">
+
+            <div id="top-lights">
+
+                <div id="blue-light"></div>
+                <div id="red-light"></div>
+                <div id="yellow-light"></div>
+                <div id="green-light"></div>
+
+            </div>
+
+            <!--  Animation Screen -->
+            <div id="animation-screen">
+
+                <img src="assets/images/pikachu-balloon-7.webp" alt="pikachuBalloons" id="balloons">
+                <img src="assets/images/meowth.webp" alt="meowth" id="meowth">
+                <img src="assets/images/trap.webp" alt="cage trap" id="trap">
+
+            </div>
+
+            <!-- Scores Area -->
+            <div id="score-area">
+
+                <div id="pokemon-found"></div>
+                <div id="times-trapped"></div>
+                <button id="reset">RESET</button>
+
+            </div>
+        </div>
+
+        <!-- Hinge -->
+        <div id="hinge"></div>
+
+        <!-- Right Panel -->
+        <div id="right-panel">
+
+            <!-- Answer -->
+            <div id="answer-screen">
+                <p id="answer"></p>
+            </div>
+
+            <!-- Keyboard for input -->
+            <div id="input-keyboard">
+                
+                <div id="first-row"></div>
+                <div id="second-row"></div>
+                <div id="third-row"></div>
+                
+            </div>
+        </div>
+    </div>
+
     <script src="assets/js/script.js"></script>
 </body>
 </html>
