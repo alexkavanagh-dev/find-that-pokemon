@@ -15,11 +15,11 @@ function runGame(pokemonArray) {
     let keyboardButtons = document.getElementsByClassName('letter');
 
     for (let button of keyboardButtons) {
-        button.addEventListener("click", handleKeyboardInput);
+        button.addEventListener("click", function(){ handleKeyboardInput(this, answer); }); 
     }
 
     let resetButton = document.getElementById('reset-button');
-    resetButton.addEventListener("click", handleKeyboardInput);
+    resetButton.addEventListener("click", function(){ handleKeyboardInput(this, answer); }); 
 
 }
 
@@ -63,10 +63,10 @@ function displayAnswerDashes(answer) {
     }
 }
 
-function handleKeyboardInput(e) {
-    e.preventDefault();
+function handleKeyboardInput(input, answer) {
 
-    console.log(this.innerText + " button works!");
+    console.log(answer);
+    console.log(input.innerText + " button works!");
 }
 
 function incrementFound() {
