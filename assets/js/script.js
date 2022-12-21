@@ -20,8 +20,40 @@ function runGame() {
 
     let answer = pickPokemonFromArray(firstGenPokemonArray);
 
+    displayAnswerDashes(answer);
+
     console.log(answer);
 }
+
+function displayAnswerDashes(answer) {
+
+    let answerHTML = document.getElementById('answer');
+
+    for (let i = 0; i < answer.length; i++) {
+        answerHTML.innerHTML += "_ ";
+    }
+}
+
+function createInputKeyboard() {
+    
+    let qwertyAlphabet = "QWERTYUIOPASDFGHJKLZXCVBNM'";
+    let qwertyArray = Array.from(qwertyAlphabet);
+    
+    let firstRowHTML = document.getElementById('first-row');
+    let secondRowHTML = document.getElementById('second-row');
+    let thirdRowHTML = document.getElementById('third-row');
+    
+    for (let i = 0; i < qwertyArray.length; i++) {
+        
+        if (i < 10) {
+            firstRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
+        } else if (i < 19) {
+            secondRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
+        } else {
+            thirdRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
+        }
+    }  
+};
 
 function pickPokemonFromArray(pokemonArray) {
 
@@ -32,27 +64,6 @@ function pickPokemonFromArray(pokemonArray) {
 
     return answer;
 }
-
-function createInputKeyboard() {
-
-    let qwertyAlphabet = "QWERTYUIOPASDFGHJKLZXCVBNM'";
-    let qwertyArray = Array.from(qwertyAlphabet);
-
-    let firstRowHTML = document.getElementById('first-row');
-    let secondRowHTML = document.getElementById('second-row');
-    let thirdRowHTML = document.getElementById('third-row');
-
-    for (let i = 0; i < qwertyArray.length; i++) {
-
-        if (i < 10) {
-            firstRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
-        } else if (i < 19) {
-            secondRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
-        } else {
-            thirdRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
-        }
-    }  
-};
 
 function handleKeyboardInput(e) {
     e.preventDefault();
