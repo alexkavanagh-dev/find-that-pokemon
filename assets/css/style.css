@@ -163,14 +163,22 @@ header #title {
 
 /* Answer screen */
 #answer-screen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 400px;
     height: 100px;
     background-color: #111;
     color: white;
     border-radius: 5px;
-    font-size: 3rem;
+    font-size: 4rem;
     text-align: center;
     border: 1px solid black;
+}
+
+.answer-letter {
+    margin-right: 10px;
 }
 
 #answer {

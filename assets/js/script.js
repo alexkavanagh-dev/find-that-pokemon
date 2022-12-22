@@ -56,10 +56,10 @@ function pickPokemonFromArray(pokemonArray) {
 
 function displayAnswerDashes(answer) {
 
-    let answerHTML = document.getElementById('answer');
+    let answerHTML = document.getElementById('answer-screen');
 
     for (let i = 0; i < answer.length; i++) {
-        answerHTML.innerHTML += "_ ";
+        answerHTML.innerHTML += "<p class='answer-letter'>_</p>";
     }
 }
 
