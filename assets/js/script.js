@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function runGame(pokemonArray) {
     
-    let answer = pickPokemonFromArray(pokemonArray);
+    let answer = (pickPokemonFromArray(pokemonArray)).toUpperCase();
     displayAnswerDashes(answer);
 
     let keyboardButtons = document.getElementsByClassName('letter');
