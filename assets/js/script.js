@@ -71,6 +71,21 @@ function handleKeyboardInput(input, answer) {
     input.style.color = "#28abfd";
     input.setAttribute("disabled", "");
 
+    checkInput(input, answer);
+
+}
+
+function checkInput(input, answer) {
+
+    let answerLettersHTML = document.getElementsByClassName('answer-letter');
+
+    for (i = 0; i < answer.length; i++) {
+        
+        if (input.innerText === answer.charAt(i)) {
+
+            answerLettersHTML[i].innerText = input.innerText;
+        }
+    }
 }
 
 function incrementFound() {
