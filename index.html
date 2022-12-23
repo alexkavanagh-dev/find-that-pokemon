@@ -22,60 +22,62 @@
     </header>
 
     <!-- Game Area -->
-    <div id="pokedex">
+    <section id="game-area">
+        <div id="pokedex">
 
-        <!-- Left Panel -->
-        <div id="left-panel">
+            <!-- Left Panel -->
+            <div id="left-panel">
 
-            <div id="top-lights">
+                <div id="top-lights">
 
-                <div id="blue-light"></div>
-                <div id="red-light"></div>
-                <div id="yellow-light"></div>
-                <div id="green-light"></div>
+                    <div id="blue-light"></div>
+                    <div id="red-light"></div>
+                    <div id="yellow-light"></div>
+                    <div id="green-light"></div>
 
+                </div>
+
+                <!--  Animation Screen -->
+                <div id="animation-screen">
+
+                    <img src="assets/images/pikachu-balloon-7.webp" alt="pikachuBalloons" id="balloons">
+                    <img src="assets/images/meowth.webp" alt="meowth" id="meowth">
+                    <img src="assets/images/trap.webp" alt="cage trap" id="trap">
+
+                </div>
+
+                <!-- Scores Area -->
+                <div id="score-area">
+
+                    <p id="pokemon-found">Pokemon Found: <span id="score-found">0</span>/151</p>
+                    <p id="times-trapped">Pikachus Trapped: <span id="score-trapped">0</span></p>
+                    <button id="reset-button">RESET</button>
+
+                </div>
             </div>
 
-            <!--  Animation Screen -->
-            <div id="animation-screen">
+            <!-- Hinge -->
+            <div id="hinge"></div>
 
-                <img src="assets/images/pikachu-balloon-7.webp" alt="pikachuBalloons" id="balloons">
-                <img src="assets/images/meowth.webp" alt="meowth" id="meowth">
-                <img src="assets/images/trap.webp" alt="cage trap" id="trap">
+            <!-- Right Panel -->
+            <div id="right-panel">
 
-            </div>
+                <!-- Answer -->
+                <div id="answer-screen">
+                    
+                </div>
 
-            <!-- Scores Area -->
-            <div id="score-area">
+                <!-- Keyboard for input -->
+                <div id="input-keyboard">
+                    
+                    <div id="first-row"></div>
+                    <div id="second-row"></div>
+                    <div id="third-row"></div>
 
-                <p id="pokemon-found">Pokemon Found: <span id="score-found">0</span>/151</p>
-                <p id="times-trapped">Pikachus Trapped: <span id="score-trapped">0</span></p>
-                <button id="reset-button">RESET</button>
-
+                </div>
             </div>
         </div>
-
-        <!-- Hinge -->
-        <div id="hinge"></div>
-
-        <!-- Right Panel -->
-        <div id="right-panel">
-
-            <!-- Answer -->
-            <div id="answer-screen">
-                
-            </div>
-
-            <!-- Keyboard for input -->
-            <div id="input-keyboard">
-                
-                <div id="first-row"></div>
-                <div id="second-row"></div>
-                <div id="third-row"></div>
-
-            </div>
-        </div>
-    </div>
+    </section>
 
     <script src="assets/js/script.js"></script>
 </body>
