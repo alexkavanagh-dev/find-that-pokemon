@@ -8,8 +8,10 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function runGame(pokemonArray) {
+
+    let pokemonArrayClone = [...pokemonArray];
     
-    let answer = (pickPokemonFromArray(pokemonArray)).toUpperCase();
+    let answer = (pickPokemonFromArray(pokemonArrayClone)).toUpperCase();
     displayAnswerDashes(answer);
 
     let keyboardButtons = document.getElementsByClassName('letter');
@@ -44,12 +46,15 @@ function createInputKeyboard() {
     }  
 };
 
-function pickPokemonFromArray(pokemonArray) {
+function pickPokemonFromArray(pokemonArrayClone) {
 
-    let arrayNumber = Math.floor( Math.random() * pokemonArray.length );
-    let answer = pokemonArray[arrayNumber];    
+    let arrayNumber = Math.floor( Math.random() * pokemonArrayClone.length );
+    let answer = pokemonArrayClone[arrayNumber];    
 
-    pokemonArray.splice(arrayNumber, 1);
+    pokemonArrayClone.splice(arrayNumber, 1);
+
+    console.log(pokemonArray);
+    console.log(pokemonArrayClone);
 
     return answer;
 }
