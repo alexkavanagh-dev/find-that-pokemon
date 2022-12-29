@@ -1,5 +1,8 @@
+// Global const containing all 151 first generation pokemon that gets passed to the runGame() function
+// Having this be passed to runGame() will make it easier in future to add more generations that a user could select from and have that pass to runGame() instead
 const firstGenPokemonArray = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu","Raichu","Sandshrew","Sandslash","Nidoran","Nidorina","Nidoqueen","Nidoran","Nidorino","Nidoking","Clefairy","Clefable","Vulpix","Ninetales","Jigglypuff","Wigglytuff","Zubat","Golbat","Oddish","Gloom","Vileplume","Paras","Parasect","Venonat","Venomoth","Diglett","Dugtrio","Meowth","Persian","Psyduck","Golduck","Mankey","Primeape","Growlithe","Arcanine","Poliwag","Poliwhirl","Poliwrath","Abra","Kadabra","Alakazam","Machop","Machoke","Machamp","Bellsprout","Weepinbell","Victreebel","Tentacool","Tentacruel","Geodude","Graveler","Golem","Ponyta","Rapidash","Slowpoke","Slowbro","Magnemite","Magneton","Farfetch'd","Doduo","Dodrio","Seel","Dewgong","Grimer","Muk","Shellder","Cloyster","Gastly","Haunter","Gengar","Onix","Drowzee","Hypno","Krabby","Kingler","Voltorb","Electrode","Exeggcute","Exeggutor","Cubone","Marowak","Hitmonlee","Hitmonchan","Lickitung","Koffing","Weezing","Rhyhorn","Rhydon","Chansey","Tangela","Kangaskhan","Horsea","Seadra","Goldeen","Seaking","Staryu","Starmie","Mr. Mime","Scyther","Jynx","Electabuzz","Magmar","Pinsir","Tauros","Magikarp","Gyarados","Lapras","Ditto","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops","Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew"];
 
+// When the DOM content loads, call createInputKeyboard() and then runGame() with the pokemon array as an argument
 document.addEventListener("DOMContentLoaded", function() {
 
     createInputKeyboard();
@@ -7,24 +10,35 @@ document.addEventListener("DOMContentLoaded", function() {
     runGame(firstGenPokemonArray);
 });
 
+/**
+ * The main loop of the game, called when the DOM content is loaded
+ * @param {*} pokemonArray 
+ */
 function runGame(pokemonArray) {
 
+    // Create clone of the pokemon array so changes can be made without affecting the original
     let pokemonArrayClone = [...pokemonArray];
     
     let answer = (pickPokemonFromArray(pokemonArrayClone)).toUpperCase();
+
     displayAnswerDashes(answer);
 
+    // Get buttons from the input keyboard and add event listeners to them 
     let keyboardButtons = document.getElementsByClassName('letter');
 
     for (let button of keyboardButtons) {
         button.addEventListener("click", function(){ handleKeyboardInput(this, answer); }); 
     }
 
+    // Add event listener to the reset button
     let resetButton = document.getElementById('reset-button');
     resetButton.addEventListener("click", function(){ handleKeyboardInput(this, answer); }); 
 
 }
 
+/**
+ * Create the input qwerty keyboard with template literals and a for loop
+ */
 function createInputKeyboard() {
     
     let qwertyAlphabet = "QWERTYUIOPASDFGHJKLZXCVBNM'";
@@ -46,6 +60,12 @@ function createInputKeyboard() {
     }  
 };
 
+/**
+ * Takes cloned pokemon array, generates a random number to pick an answer
+ * then splices that answer from the array and returns the answer
+ * @param {*} pokemonArrayClone 
+ * @returns answer
+ */
 function pickPokemonFromArray(pokemonArrayClone) {
 
     let arrayNumber = Math.floor( Math.random() * pokemonArrayClone.length );
@@ -59,6 +79,10 @@ function pickPokemonFromArray(pokemonArrayClone) {
     return answer;
 }
 
+/**
+ * Displays a dash for each letter in the answer on the webpage
+ * @param {*} answer 
+ */
 function displayAnswerDashes(answer) {
 
     let answerHTML = document.getElementById('answer-screen');
@@ -68,6 +92,11 @@ function displayAnswerDashes(answer) {
     }
 }
 
+/**
+ * Disables whichever letter was just clicked and calls checkInput()
+ * @param {*} input 
+ * @param {*} answer 
+ */
 function handleKeyboardInput(input, answer) {
 
     console.log(answer);
@@ -80,6 +109,11 @@ function handleKeyboardInput(input, answer) {
 
 }
 
+/**
+ * Checks if selected input is in answer and replaces dash(es) with letter(s)
+ * @param {*} input 
+ * @param {*} answer 
+ */
 function checkInput(input, answer) {
 
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
@@ -93,18 +127,28 @@ function checkInput(input, answer) {
     }
 }
 
+/**
+ * Increments pokemon found when a full answer is guessed correctly
+ */
 function incrementFound() {
 
     let oldScoreFound = parseInt(document.getElementById('score-found').innerText);
     document.getElementById("score-found").innerText = ++oldScoreFound;
 }
 
+/**
+ * Increments 'trapped' score when user runs out of guesses
+ */
 function incrementTrapped() {
 
     let oldScoreTrapped = parseInt(document.getElementById('score-trapped').innerText);
     document.getElementById("score-trapped").innerText = ++oldScoreTrapped;
 }
 
+/**
+ * Resets game when reset button is used
+ * @param {*} e 
+ */
 function resetGame(e) {
     e.preventDefault();
 
