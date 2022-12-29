@@ -2,6 +2,8 @@
 // Having this be passed to runGame() will make it easier in future to add more generations that a user could select from and have that pass to runGame() instead
 const firstGenPokemonArray = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu","Raichu","Sandshrew","Sandslash","Nidoran","Nidorina","Nidoqueen","Nidoran","Nidorino","Nidoking","Clefairy","Clefable","Vulpix","Ninetales","Jigglypuff","Wigglytuff","Zubat","Golbat","Oddish","Gloom","Vileplume","Paras","Parasect","Venonat","Venomoth","Diglett","Dugtrio","Meowth","Persian","Psyduck","Golduck","Mankey","Primeape","Growlithe","Arcanine","Poliwag","Poliwhirl","Poliwrath","Abra","Kadabra","Alakazam","Machop","Machoke","Machamp","Bellsprout","Weepinbell","Victreebel","Tentacool","Tentacruel","Geodude","Graveler","Golem","Ponyta","Rapidash","Slowpoke","Slowbro","Magnemite","Magneton","Farfetch'd","Doduo","Dodrio","Seel","Dewgong","Grimer","Muk","Shellder","Cloyster","Gastly","Haunter","Gengar","Onix","Drowzee","Hypno","Krabby","Kingler","Voltorb","Electrode","Exeggcute","Exeggutor","Cubone","Marowak","Hitmonlee","Hitmonchan","Lickitung","Koffing","Weezing","Rhyhorn","Rhydon","Chansey","Tangela","Kangaskhan","Horsea","Seadra","Goldeen","Seaking","Staryu","Starmie","Mr. Mime","Scyther","Jynx","Electabuzz","Magmar","Pinsir","Tauros","Magikarp","Gyarados","Lapras","Ditto","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops","Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew"];
 
+let answer;
+
 // When the DOM content loads, call createInputKeyboard() and then runGame() with the pokemon array as an argument
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -19,7 +21,7 @@ function runGame(pokemonArray) {
     // Create clone of the pokemon array so changes can be made without affecting the original
     let pokemonArrayClone = [...pokemonArray];
     
-    let answer = (pickPokemonFromArray(pokemonArrayClone)).toUpperCase();
+    pickPokemonFromArray(pokemonArrayClone);
 
     displayAnswerDashes(answer);
 
@@ -27,13 +29,13 @@ function runGame(pokemonArray) {
     let keyboardButtons = document.getElementsByClassName('letter');
 
     for (let button of keyboardButtons) {
-        button.addEventListener("click", function(){ handleKeyboardInput(this, answer); }); 
+        button.addEventListener("click", function(){ handleKeyboardInput(this); }); 
     }
 
     // Add event listener to the reset button
     let resetButton = document.getElementById('reset-button');
-    resetButton.addEventListener("click", function(){ handleKeyboardInput(this, answer); }); 
-
+    resetButton.addEventListener("click", function(){ handleKeyboardInput(this); }); 
+ 
 }
 
 /**
@@ -69,14 +71,9 @@ function createInputKeyboard() {
 function pickPokemonFromArray(pokemonArrayClone) {
 
     let arrayNumber = Math.floor( Math.random() * pokemonArrayClone.length );
-    let answer = pokemonArrayClone[arrayNumber];    
+    answer = (pokemonArrayClone[arrayNumber]).toUpperCase();    
 
     pokemonArrayClone.splice(arrayNumber, 1);
-
-    console.log(pokemonArray);
-    console.log(pokemonArrayClone);
-
-    return answer;
 }
 
 /**
@@ -97,7 +94,7 @@ function displayAnswerDashes(answer) {
  * @param {*} input 
  * @param {*} answer 
  */
-function handleKeyboardInput(input, answer) {
+function handleKeyboardInput(input) {
 
     console.log(answer);
     console.log(input.innerText + " button works!");
@@ -105,7 +102,7 @@ function handleKeyboardInput(input, answer) {
     input.style.color = "#28abfd";
     input.setAttribute("disabled", "");
 
-    checkInput(input, answer);
+    checkInput(input);
 
 }
 
@@ -114,7 +111,7 @@ function handleKeyboardInput(input, answer) {
  * @param {*} input 
  * @param {*} answer 
  */
-function checkInput(input, answer) {
+function checkInput(input) {
 
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
 
