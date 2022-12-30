@@ -2,7 +2,12 @@
 // Having this be passed to runGame() will make it easier in future to add more generations that a user could select from and have that pass to runGame() instead
 const firstGenPokemonArray = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu","Raichu","Sandshrew","Sandslash","Nidoran","Nidorina","Nidoqueen","Nidoran","Nidorino","Nidoking","Clefairy","Clefable","Vulpix","Ninetales","Jigglypuff","Wigglytuff","Zubat","Golbat","Oddish","Gloom","Vileplume","Paras","Parasect","Venonat","Venomoth","Diglett","Dugtrio","Meowth","Persian","Psyduck","Golduck","Mankey","Primeape","Growlithe","Arcanine","Poliwag","Poliwhirl","Poliwrath","Abra","Kadabra","Alakazam","Machop","Machoke","Machamp","Bellsprout","Weepinbell","Victreebel","Tentacool","Tentacruel","Geodude","Graveler","Golem","Ponyta","Rapidash","Slowpoke","Slowbro","Magnemite","Magneton","Farfetch'd","Doduo","Dodrio","Seel","Dewgong","Grimer","Muk","Shellder","Cloyster","Gastly","Haunter","Gengar","Onix","Drowzee","Hypno","Krabby","Kingler","Voltorb","Electrode","Exeggcute","Exeggutor","Cubone","Marowak","Hitmonlee","Hitmonchan","Lickitung","Koffing","Weezing","Rhyhorn","Rhydon","Chansey","Tangela","Kangaskhan","Horsea","Seadra","Goldeen","Seaking","Staryu","Starmie","Mr. Mime","Scyther","Jynx","Electabuzz","Magmar","Pinsir","Tauros","Magikarp","Gyarados","Lapras","Ditto","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops","Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew"];
 
+let livesLeft = 7;
 let answer;
+let pikachuBalloons = document.getElementById('balloons');
+
+// Create clone of the pokemon array so changes can be made without affecting the original
+let pokemonArrayClone = [...firstGenPokemonArray];
 
 // When the DOM content loads, call createInputKeyboard() and then runGame() with the pokemon array as an argument
 document.addEventListener("DOMContentLoaded", function() {
@@ -16,14 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
  * The main loop of the game, called when the DOM content is loaded
  * @param {*} pokemonArray 
  */
-function runGame(pokemonArray) {
-
-    // Create clone of the pokemon array so changes can be made without affecting the original
-    let pokemonArrayClone = [...pokemonArray];
+function runGame() {
     
-    pickPokemonFromArray(pokemonArrayClone);
+    pickPokemonFromArray();
 
-    displayAnswerDashes(answer);
+    displayAnswerDashes();
 
     // Get buttons from the input keyboard and add event listeners to them 
     let keyboardButtons = document.getElementsByClassName('letter');
@@ -60,7 +62,27 @@ function createInputKeyboard() {
             thirdRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
         }
     }  
-};
+}
+
+function resetKeyboard() {
+
+    let firstRowHTML = document.getElementById('first-row');
+    let secondRowHTML = document.getElementById('second-row');
+    let thirdRowHTML = document.getElementById('third-row');
+
+    firstRowHTML.innerHTML = "";
+    secondRowHTML.innerHTML = "";
+    thirdRowHTML.innerHTML = "";
+
+    createInputKeyboard();
+
+    // Get buttons from the input keyboard and add event listeners to them 
+    let keyboardButtons = document.getElementsByClassName('letter');
+
+    for (let button of keyboardButtons) {
+        button.addEventListener("click", function(){ handleKeyboardInput(this); }); 
+    }
+}
 
 /**
  * Takes cloned pokemon array, generates a random number to pick an answer
@@ -68,7 +90,7 @@ function createInputKeyboard() {
  * @param {*} pokemonArrayClone 
  * @returns answer
  */
-function pickPokemonFromArray(pokemonArrayClone) {
+function pickPokemonFromArray() {
 
     let arrayNumber = Math.floor( Math.random() * pokemonArrayClone.length );
     answer = (pokemonArrayClone[arrayNumber]).toUpperCase();    
@@ -80,9 +102,11 @@ function pickPokemonFromArray(pokemonArrayClone) {
  * Displays a dash for each letter in the answer on the webpage
  * @param {*} answer 
  */
-function displayAnswerDashes(answer) {
+function displayAnswerDashes() {
 
     let answerHTML = document.getElementById('answer-screen');
+
+    answerHTML.innerHTML = "";
 
     for (let i = 0; i < answer.length; i++) {
         answerHTML.innerHTML += "<p class='answer-letter'>_</p>";
@@ -102,8 +126,23 @@ function handleKeyboardInput(input) {
     input.style.color = "#28abfd";
     input.setAttribute("disabled", "");
 
-    checkInput(input);
+    let correctGuess = checkInput(input);
 
+    if (!correctGuess) {
+
+        livesLeft--;
+        pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+    }
+
+    if (livesLeft === 0) {
+
+        incrementTrapped();
+        pickPokemonFromArray();
+        resetKeyboard();
+        displayAnswerDashes();
+        livesLeft = 7;
+        pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+    }
 }
 
 /**
@@ -113,15 +152,21 @@ function handleKeyboardInput(input) {
  */
 function checkInput(input) {
 
+    let correctGuess = false; 
+
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
 
     for (i = 0; i < answer.length; i++) {
         
         if (input.innerText === answer.charAt(i)) {
 
+            correctGuess = true;
             answerLettersHTML[i].innerText = input.innerText;
         }
     }
+
+    return correctGuess;
+    
 }
 
 /**
