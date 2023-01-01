@@ -5,6 +5,7 @@ const firstGenPokemonArray = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Cha
 let livesLeft = 7;
 let answer;
 let pikachuBalloons = document.getElementById('balloons');
+let trap = document.getElementById('trap');
 
 // Create clone of the pokemon array so changes can be made without affecting the original
 let pokemonArrayClone = [...firstGenPokemonArray];
@@ -160,10 +161,19 @@ function handleKeyboardInput(input) {
 
         incrementTrapped();
         pickPokemonFromArray();
-        resetKeyboard();
-        displayAnswerDashes();
-        livesLeft = 7;
-        pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+
+        trap.src = "assets/images/trapped-pikachu.webp";
+        pikachuBalloons.style.visibility = "hidden";
+
+        setTimeout(() => {
+
+            resetKeyboard();
+            displayAnswerDashes();
+            livesLeft = 7;
+            pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+            trap.src = "assets/images/trap.webp";
+            pikachuBalloons.style.visibility = "visible";
+        }, 2000);
     }
 }
 
@@ -214,7 +224,7 @@ function incrementTrapped() {
  * @param {*} e 
  */
 function resetGame(input) {
-    
+
     answer = "";
     livesLeft = 7;
     pokemonArrayClone = [...firstGenPokemonArray];
