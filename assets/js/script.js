@@ -159,6 +159,13 @@ function handleKeyboardInput(input) {
 
     if (livesLeft === 0) {
 
+        let keyboardButtons = document.getElementsByClassName('letter');
+
+        for(button of keyboardButtons) {
+
+            button.setAttribute("disabled", "");
+        }
+
         incrementTrapped();
         pickPokemonFromArray();
 
