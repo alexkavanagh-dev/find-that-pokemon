@@ -132,6 +132,28 @@ function handleKeyboardInput(input) {
 
         livesLeft--;
         pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+    } else {
+
+        let answerLettersHTML = document.getElementsByClassName('answer-letter');
+        let nameGuessed = true;
+
+        for (letter of answerLettersHTML) {
+
+            if (letter.innerHTML === '_') {
+
+                nameGuessed = false;
+            }
+        }
+
+        if (nameGuessed) {
+
+        incrementFound();
+        pickPokemonFromArray();
+        resetKeyboard();
+        displayAnswerDashes();
+        livesLeft = 7;
+        pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+        }
     }
 
     if (livesLeft === 0) {
