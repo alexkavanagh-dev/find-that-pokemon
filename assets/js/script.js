@@ -36,7 +36,7 @@ function runGame() {
 
     // Add event listener to the reset button
     let resetButton = document.getElementById('reset-button');
-    resetButton.addEventListener("click", function(){ handleKeyboardInput(this); }); 
+    resetButton.addEventListener("click", function(){ resetGame(this); }); 
  
 }
 
@@ -213,8 +213,18 @@ function incrementTrapped() {
  * Resets game when reset button is used
  * @param {*} e 
  */
-function resetGame(e) {
-    e.preventDefault();
+function resetGame(input) {
+    
+    answer = "";
+    livesLeft = 7;
+    pokemonArrayClone = [...firstGenPokemonArray];
+    pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+    document.getElementById("score-found").innerText = 0;
+    document.getElementById("score-trapped").innerText = 0;
 
-    console.log(this.innerText + " button works!");
+    pickPokemonFromArray();
+    resetKeyboard();
+    displayAnswerDashes();
+
+    console.log(input.innerText + " button works!");
 }
