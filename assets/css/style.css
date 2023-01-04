@@ -155,6 +155,29 @@ header #title {
     }
   }
   
+/* Win Screen */
+    #win-screen {
+        display: none;
+        margin: auto;
+        margin-top: 20px;
+        width: 80%;
+        height: 450px;
+        border-radius: 5px;
+        border: 8px solid #111;
+        background-color: whitesmoke;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    #win-title {
+
+        margin-top: 10%;
+    }
+
+    #win-message {
+
+        margin-top: 10%;
+    }
 
 /* Scores area */
 #score-area {

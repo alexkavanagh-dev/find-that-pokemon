@@ -6,6 +6,8 @@ let livesLeft = 7;
 let answer;
 let pikachuBalloons = document.getElementById('balloons');
 let trap = document.getElementById('trap');
+let animationScreen = document.getElementById('animation-screen');
+let winScreen = document.getElementById('win-screen');
 
 // Create clone of the pokemon array so changes can be made without affecting the original
 let pokemonArrayClone = [...firstGenPokemonArray];
@@ -93,10 +95,16 @@ function resetKeyboard() {
  */
 function pickPokemonFromArray() {
 
-    let arrayNumber = Math.floor( Math.random() * pokemonArrayClone.length );
-    answer = (pokemonArrayClone[arrayNumber]).toUpperCase();    
+    if (pokemonArrayClone.length === 0){
+        
+        displayWinScreen();
+    } else {
 
-    pokemonArrayClone.splice(arrayNumber, 1);
+        let arrayNumber = Math.floor( Math.random() * pokemonArrayClone.length );
+        answer = (pokemonArrayClone[arrayNumber]).toUpperCase();    
+    
+        pokemonArrayClone.splice(arrayNumber, 1);
+    }
 }
 
 /**
@@ -149,8 +157,8 @@ function handleKeyboardInput(input) {
         if (nameGuessed) {
 
         incrementFound();
-        pickPokemonFromArray();
         resetKeyboard();
+        pickPokemonFromArray();
         displayAnswerDashes();
         livesLeft = 7;
         pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
@@ -238,10 +246,28 @@ function resetGame(input) {
     pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
     document.getElementById("score-found").innerText = 0;
     document.getElementById("score-trapped").innerText = 0;
+    animationScreen.style.display = "grid";
+    winScreen.style.display = "none";
 
     pickPokemonFromArray();
     resetKeyboard();
     displayAnswerDashes();
 
     console.log(input.innerText + " button works!");
+}
+
+function displayWinScreen() {
+
+    let keyboardButtons = document.getElementsByClassName('letter');
+
+        for(button of keyboardButtons) {
+
+            button.setAttribute("disabled", "");
+        }
+
+    let scoreFound = document.getElementById('score-found');
+
+    document.getElementById("final-score").innerText = scoreFound.innerText;
+    animationScreen.style.display = "none";
+    winScreen.style.display = "block";
 }
