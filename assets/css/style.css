@@ -179,6 +179,12 @@ header #title {
         margin-top: 10%;
     }
 
+    #happy-pikachu {
+
+        margin-top: 20px;
+        width: 150px;
+    }
+
 /* Scores area */
 #score-area {
     margin: auto;
