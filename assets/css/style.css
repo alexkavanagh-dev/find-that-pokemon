@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* General */
@@ -18,6 +19,7 @@ body {
 header #title {
     max-width: 800px;
     margin: auto;
+    margin-bottom: 50px;
     font-size: 5rem;
     text-align: center;
     text-shadow: 3px 3px black;
@@ -27,8 +29,8 @@ header #title {
 /* Game area (PokeDex) */
 #pokedex {
     margin: auto;
-    margin-top: 50px;
-    max-width: 1000px;
+    margin-bottom: 50px;
+    width: 1000px;
     height: 750px;
     display: flex;
     flex-direction: row;
@@ -66,7 +68,7 @@ header #title {
 }
 
 #top-lights {
-    height: 7%;
+    height: 8%;
     display: flex;
     padding-top: 10px;
     padding-left: 10px;
@@ -230,13 +232,9 @@ header #title {
     border: 1px solid black;
 }
 
-.answer-letter {
-    margin-right: 10px;
-}
+.answer-letter {margin-right: 10px;}
 
-#answer {
-    margin-top: 25px;
-}
+#answer {margin-top: 25px;}
 
 /* Input keyboard */
 #input-keyboard {
@@ -262,4 +260,99 @@ header #title {
 #third-row {
     display: flex;
     flex-direction: row;
+}
+
+/* Medium sized screens (iPads/tablets) */
+@media screen and (max-width: 1050px) {
+
+#pokedex {
+    width: 85%;
+    height: 1000px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#left-panel {
+    width: 100%;
+    height: 60%;
+}
+
+#right-panel {
+    top: 0%;
+    width: 100%;
+    height: 40%;
+}
+
+#hinge {display: none;}
+
+#balloons {width: 100px;}
+
+#trap { width: 110px;}
+
+#meowth {width: 90px;}
+
+#animation-screen {
+    margin-top: 10px;
+    height: 55%;
+}
+}
+
+/* Small screens (phones) */
+@media screen and (max-width: 590px) {
+
+#pokedex {
+    height: 85vh;
+    width: 95%;
+}
+
+header #title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#top-lights {display: none;}
+
+#input-keyboard button {
+    font-size: 2.25rem;
+    margin: 1px;
+    width: 32px;
+}
+
+#answer-screen {    
+    width: 90%;
+    height: 50px;
+    font-size: 2rem;
+}
+
+#reset-button {font-size: 1.5rem;}
+
+#pokemon-found,
+#times-trapped {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    padding: 2px;
+}
+
+#score-area {margin-top: 10px;}
+
+#balloons {width: 60px;}
+
+#trap { width: 60px;}
+
+#meowth {width: 50px;}
+
+#animation-screen {height: 60%;}
+}
+
+/* Very small phones (iphone 5) */
+@media screen and (max-width: 350px) {
+
+#pokedex {height: 95vh;}
+
+#score-area {margin-top: 5px;}
+
+#input-keyboard button {
+    font-size: 1.5rem;
+    width: 28px;
+}
 }
