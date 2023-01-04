@@ -157,11 +157,15 @@ function handleKeyboardInput(input) {
         if (nameGuessed) {
 
         incrementFound();
-        resetKeyboard();
-        pickPokemonFromArray();
-        displayAnswerDashes();
-        livesLeft = 7;
-        pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+
+        setTimeout(() => {
+
+            resetKeyboard();
+            pickPokemonFromArray();
+            displayAnswerDashes();
+            livesLeft = 7;
+            pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+        }, 1000)
         }
     }
 
