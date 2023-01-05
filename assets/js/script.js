@@ -121,9 +121,9 @@ function handleKeyboardInput(input) {
     input.style.color = "#28abfd";
     input.setAttribute("disabled", "");
 
-    let correctGuess = checkInput(input);
+    let wasInputCorrect = checkInput(input);
 
-    if (!correctGuess) {
+    if (!wasInputCorrect) {
 
         balloonPopAudio.play();
         livesLeft--;
@@ -194,7 +194,7 @@ function handleKeyboardInput(input) {
  */
 function checkInput(input) {
 
-    let correctGuess = false; 
+    let wasInputCorrect = false; 
 
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
 
@@ -202,12 +202,12 @@ function checkInput(input) {
         
         if (input.innerText === answer.charAt(i)) {
 
-            correctGuess = true;
+            wasInputCorrect = true;
             answerLettersHTML[i].innerText = input.innerText;
         }
     }
 
-    return correctGuess;
+    return wasInputCorrect;
 }
 
 /**
