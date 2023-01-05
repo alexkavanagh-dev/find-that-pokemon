@@ -1,28 +1,31 @@
-// Global const containing all 151 first generation pokemon that gets passed to the runGame() function
-// Having this be passed to runGame() will make it easier in future to add more generations that a user could select from and have that pass to runGame() instead
+// Const for all 151 first generation pokemon
 const firstGenPokemonArray = ["Bulbasaur","Ivysaur","Venusaur","Charmander","Charmeleon","Charizard","Squirtle","Wartortle","Blastoise","Caterpie","Metapod","Butterfree","Weedle","Kakuna","Beedrill","Pidgey","Pidgeotto","Pidgeot","Rattata","Raticate","Spearow","Fearow","Ekans","Arbok","Pikachu","Raichu","Sandshrew","Sandslash","Nidoran","Nidorina","Nidoqueen","Nidoran","Nidorino","Nidoking","Clefairy","Clefable","Vulpix","Ninetales","Jigglypuff","Wigglytuff","Zubat","Golbat","Oddish","Gloom","Vileplume","Paras","Parasect","Venonat","Venomoth","Diglett","Dugtrio","Meowth","Persian","Psyduck","Golduck","Mankey","Primeape","Growlithe","Arcanine","Poliwag","Poliwhirl","Poliwrath","Abra","Kadabra","Alakazam","Machop","Machoke","Machamp","Bellsprout","Weepinbell","Victreebel","Tentacool","Tentacruel","Geodude","Graveler","Golem","Ponyta","Rapidash","Slowpoke","Slowbro","Magnemite","Magneton","Farfetch'd","Doduo","Dodrio","Seel","Dewgong","Grimer","Muk","Shellder","Cloyster","Gastly","Haunter","Gengar","Onix","Drowzee","Hypno","Krabby","Kingler","Voltorb","Electrode","Exeggcute","Exeggutor","Cubone","Marowak","Hitmonlee","Hitmonchan","Lickitung","Koffing","Weezing","Rhyhorn","Rhydon","Chansey","Tangela","Kangaskhan","Horsea","Seadra","Goldeen","Seaking","Staryu","Starmie","Mr. Mime","Scyther","Jynx","Electabuzz","Magmar","Pinsir","Tauros","Magikarp","Gyarados","Lapras","Ditto","Eevee","Vaporeon","Jolteon","Flareon","Porygon","Omanyte","Omastar","Kabuto","Kabutops","Aerodactyl","Snorlax","Articuno","Zapdos","Moltres","Dratini","Dragonair","Dragonite","Mewtwo","Mew"];
 
+// Create clone of the pokemon array so changes can be made without affecting the original
+let pokemonArrayClone = [...firstGenPokemonArray];
+
+// Global variables and common reused HTML elements
 let livesLeft = 7;
 let answer;
 let pikachuBalloons = document.getElementById('balloons');
 let trap = document.getElementById('trap');
 let animationScreen = document.getElementById('animation-screen');
 let winScreen = document.getElementById('win-screen');
+let firstRowHTML = document.getElementById('first-row');
+let secondRowHTML = document.getElementById('second-row');
+let thirdRowHTML = document.getElementById('third-row');
 
-// Create clone of the pokemon array so changes can be made without affecting the original
-let pokemonArrayClone = [...firstGenPokemonArray];
 
-// When the DOM content loads, call createInputKeyboard() and then runGame() with the pokemon array as an argument
+// Wait for DOM to load and then create the input keyboard and start the main game
 document.addEventListener("DOMContentLoaded", function() {
 
     createInputKeyboard();
 
-    runGame(firstGenPokemonArray);
+    runGame();
 });
 
 /**
  * The main loop of the game, called when the DOM content is loaded
- * @param {*} pokemonArray 
  */
 function runGame() {
     
@@ -30,17 +33,9 @@ function runGame() {
 
     displayAnswerDashes();
 
-    // Get buttons from the input keyboard and add event listeners to them 
-    let keyboardButtons = document.getElementsByClassName('letter');
-
-    for (let button of keyboardButtons) {
-        button.addEventListener("click", function(){ handleKeyboardInput(this); }); 
-    }
-
-    // Add event listener to the reset button
+    // Add event listener to the reset button to call resetGame()
     let resetButton = document.getElementById('reset-button');
     resetButton.addEventListener("click", function(){ resetGame(this); }); 
- 
 }
 
 /**
@@ -51,10 +46,6 @@ function createInputKeyboard() {
     let qwertyAlphabet = "QWERTYUIOPASDFGHJKLZXCVBNM'";
     let qwertyArray = Array.from(qwertyAlphabet);
     
-    let firstRowHTML = document.getElementById('first-row');
-    let secondRowHTML = document.getElementById('second-row');
-    let thirdRowHTML = document.getElementById('third-row');
-    
     for (let i = 0; i < qwertyArray.length; i++) {
         
         if (i < 10) {
@@ -64,20 +55,7 @@ function createInputKeyboard() {
         } else {
             thirdRowHTML.innerHTML += `<button id='${qwertyArray[i]}' class='letter'>${qwertyArray[i]}</button>`;
         }
-    }  
-}
-
-function resetKeyboard() {
-
-    let firstRowHTML = document.getElementById('first-row');
-    let secondRowHTML = document.getElementById('second-row');
-    let thirdRowHTML = document.getElementById('third-row');
-
-    firstRowHTML.innerHTML = "";
-    secondRowHTML.innerHTML = "";
-    thirdRowHTML.innerHTML = "";
-
-    createInputKeyboard();
+    } 
 
     // Get buttons from the input keyboard and add event listeners to them 
     let keyboardButtons = document.getElementsByClassName('letter');
@@ -87,11 +65,18 @@ function resetKeyboard() {
     }
 }
 
+function resetKeyboard() {
+
+    firstRowHTML.innerHTML = "";
+    secondRowHTML.innerHTML = "";
+    thirdRowHTML.innerHTML = "";
+
+    createInputKeyboard();
+}
+
 /**
  * Takes cloned pokemon array, generates a random number to pick an answer
  * then splices that answer from the array and returns the answer
- * @param {*} pokemonArrayClone 
- * @returns answer
  */
 function pickPokemonFromArray() {
 
@@ -105,11 +90,12 @@ function pickPokemonFromArray() {
     
         pokemonArrayClone.splice(arrayNumber, 1);
     }
+
+    console.log(answer);
 }
 
 /**
  * Displays a dash for each letter in the answer on the webpage
- * @param {*} answer 
  */
 function displayAnswerDashes() {
 
@@ -123,14 +109,10 @@ function displayAnswerDashes() {
 }
 
 /**
- * Disables whichever letter was just clicked and calls checkInput()
+ * Disables the letter was just clicked and calls checkInput()
  * @param {*} input 
- * @param {*} answer 
  */
 function handleKeyboardInput(input) {
-
-    console.log(answer);
-    console.log(input.innerText + " button works!");
 
     input.style.color = "#28abfd";
     input.setAttribute("disabled", "");
@@ -199,7 +181,6 @@ function handleKeyboardInput(input) {
 /**
  * Checks if selected input is in answer and replaces dash(es) with letter(s)
  * @param {*} input 
- * @param {*} answer 
  */
 function checkInput(input) {
 
@@ -217,7 +198,6 @@ function checkInput(input) {
     }
 
     return correctGuess;
-    
 }
 
 /**
@@ -256,8 +236,6 @@ function resetGame(input) {
     pickPokemonFromArray();
     resetKeyboard();
     displayAnswerDashes();
-
-    console.log(input.innerText + " button works!");
 }
 
 function displayWinScreen() {
