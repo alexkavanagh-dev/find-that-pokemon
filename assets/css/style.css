@@ -157,35 +157,28 @@ header #title {
     }
   }
   
-/* Win Screen */
-    #win-screen {
-        display: none;
-        margin: auto;
-        margin-top: 20px;
-        width: 80%;
-        height: 450px;
-        border-radius: 5px;
-        border: 8px solid #111;
-        background-color: whitesmoke;
-        text-align: center;
-        font-size: 2rem;
-    }
+/* Win Screen (Shows when game is over)*/
+#win-screen {
+    display: none;
+    margin: auto;
+    margin-top: 20px;
+    width: 80%;
+    height: 450px;
+    border-radius: 5px;
+    border: 8px solid #111;
+    background-color: whitesmoke;
+    text-align: center;
+    font-size: 2rem;
+}
 
-    #win-title {
+#win-title {margin-top: 10%;}
 
-        margin-top: 10%;
-    }
+#win-message {margin-top: 10%;}
 
-    #win-message {
-
-        margin-top: 10%;
-    }
-
-    #happy-pikachu {
-
-        margin-top: 20px;
-        width: 150px;
-    }
+#happy-pikachu {
+    margin-top: 20px;
+    width: 150px;
+}
 
 /* Scores area */
 #score-area {
@@ -232,7 +225,7 @@ header #title {
     border: 1px solid black;
 }
 
-.answer-letter {margin-right: 10px;}
+#answer-screen .answer-letter {margin-right: 10px;}
 
 #answer {margin-top: 25px;}
 
@@ -244,7 +237,7 @@ header #title {
     top: 40%;
 }
 
-#input-keyboard button {
+#input-keyboard .letter {
     font-family: 'VT323', monospace;
     font-size: 3rem;
     margin: 2px;
@@ -257,10 +250,7 @@ header #title {
 
 #first-row, 
 #second-row, 
-#third-row {
-    display: flex;
-    flex-direction: row;
-}
+#third-row {display: flex;}
 
 /* Medium sized screens (iPads/tablets) */
 @media screen and (max-width: 1050px) {
@@ -312,7 +302,7 @@ header #title {
 
 #top-lights {display: none;}
 
-#input-keyboard button {
+#input-keyboard .letter {
     font-size: 2.25rem;
     margin: 1px;
     width: 32px;
@@ -351,7 +341,7 @@ header #title {
 
 #score-area {margin-top: 5px;}
 
-#input-keyboard button {
+#input-keyboard .letter {
     font-size: 1.5rem;
     width: 28px;
 }
