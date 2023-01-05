@@ -159,26 +159,27 @@ function handleKeyboardInput(input) {
         balloonPopAudio.play();
         livesLeft--;
         pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+
+        // If all lives are gone, pikachu falling audio plays, trapped score is incremented, keyboard is disabled
+        // pikachu is shown trapped in the cage for 2 seconds before a new pokemon is selected
+        if (livesLeft === 0) {
+
+            pikachuFallAudio.play();
+            incrementTrapped();
+            disableInputKeyboard();
+
+            trap.src = "assets/images/trapped-pikachu.webp";
+            pikachuBalloons.style.visibility = "hidden";
+
+            setTimeout(() => {
+
+                pickNextPokemon();
+                trap.src = "assets/images/trap.webp";
+                pikachuBalloons.style.visibility = "visible";
+            }, 2000);
+        }
     }
 
-    // If all lives are gone, pikachu falling audio plays, trapped score is incremented, keyboard is disabled
-    // pikachu is shown trapped in the cage for 2 seconds before a new pokemon is selected
-    if (livesLeft === 0) {
-
-        pikachuFallAudio.play();
-        incrementTrapped();
-        disableInputKeyboard();
-
-        trap.src = "assets/images/trapped-pikachu.webp";
-        pikachuBalloons.style.visibility = "hidden";
-
-        setTimeout(() => {
-
-            pickNextPokemon();
-            trap.src = "assets/images/trap.webp";
-            pikachuBalloons.style.visibility = "visible";
-        }, 2000);
-    }
 }
 
 /**
