@@ -7,13 +7,13 @@ let pokemonArrayClone = [...firstGenPokemonArray];
 // Global variables and common reused HTML elements
 let livesLeft = 7;
 let answer;
-let pikachuBalloons = document.getElementById('balloons');
-let trap = document.getElementById('trap');
-let animationScreen = document.getElementById('animation-screen');
-let winScreen = document.getElementById('win-screen');
-let firstRowHTML = document.getElementById('first-row');
-let secondRowHTML = document.getElementById('second-row');
-let thirdRowHTML = document.getElementById('third-row');
+const pikachuBalloons = document.getElementById('balloons');
+const trap = document.getElementById('trap');
+const animationScreen = document.getElementById('animation-screen');
+const winScreen = document.getElementById('win-screen');
+const firstRowHTML = document.getElementById('first-row');
+const secondRowHTML = document.getElementById('second-row');
+const thirdRowHTML = document.getElementById('third-row');
 
 const clickAudio = document.getElementById('click-audio');
 const balloonPopAudio = document.getElementById('balloon-pop');
