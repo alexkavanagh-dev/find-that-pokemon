@@ -277,17 +277,13 @@ function resetGame() {
 
     clickAudio.play();
     answer = "";
-    livesLeft = 7;
     pokemonArrayClone = [...firstGenPokemonArray];
-    pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
     document.getElementById("score-found").innerText = 0;
     document.getElementById("score-trapped").innerText = 0;
     animationScreen.style.display = "grid";
     winScreen.style.display = "none";
 
-    pickPokemonFromArray();
-    resetKeyboard();
-    displayAnswerDashes();
+    pickNextPokemon();
 }
 
 /**
@@ -296,12 +292,7 @@ function resetGame() {
  */
 function displayWinScreen() {
 
-    let keyboardButtons = document.getElementsByClassName('letter');
-
-        for(button of keyboardButtons) {
-
-            button.setAttribute("disabled", "");
-        }
+    disableInputKeyboard();
 
     let scoreFound = document.getElementById('score-found');
 
