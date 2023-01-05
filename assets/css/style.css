@@ -29,7 +29,6 @@ header #title {
 /* Game area (PokeDex) */
 #pokedex {
     margin: auto;
-    margin-bottom: 50px;
     width: 1000px;
     height: 750px;
     display: flex;
@@ -273,44 +272,64 @@ header #title {
     height: 40%;
 }
 
-#hinge {display: none;}
-
-#balloons {width: 100px;}
-
-#trap { width: 110px;}
-
-#meowth {width: 90px;}
-
-#animation-screen {
+#animation-screen, 
+#win-screen {
     margin-top: 10px;
     height: 55%;
 }
+
+#hinge {display: none;}
+
+#balloons {width: 110px;}
+
+#trap { width: 120px;}
+
+#meowth {width: 100px;}
+
+#happy-pikachu { 
+    width: 80px; 
+    margin-top: 10px;
+}
+
+#win-title { margin-top: 10px;}
+
+#win-message { margin-top: 10px;}
+
 }
 
 /* Small screens (phones) */
 @media screen and (max-width: 590px) {
-
-#pokedex {
-    height: 85vh;
-    width: 95%;
-}
-
 header #title {
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    height: 5vh;
+}
+
+#pokedex {
+    height: 95vh;
+    width: 100%;
+    margin-bottom: 0px;
 }
 
 #top-lights {display: none;}
 
+#left-panel {height: 55%;}
+
+#right-panel {height: 45%;}
+
 #input-keyboard .letter {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     margin: 1px;
-    width: 32px;
+    width: 9vw;
+    height: 8vh;
 }
+
+#animation-screen, 
+#win-screen {height: 60%;}
 
 #answer-screen {    
     width: 90%;
-    height: 50px;
+    height: 8vh;
     font-size: 2rem;
 }
 
@@ -321,9 +340,52 @@ header #title {
     font-size: 1.2rem;
     margin-bottom: 5px;
     padding: 2px;
+    height: 5vh;
+    line-height: 4vh;
 }
 
 #score-area {margin-top: 10px;}
+
+#balloons {width: 70px;}
+
+#trap { width: 70px;}
+
+#meowth {width: 60px;}
+
+#happy-pikachu {
+    width: 60px; 
+    margin-top: 5px;
+}
+
+#win-title {
+    font-size: 2rem; 
+    margin-top: 5px;
+}
+
+#win-message {
+    font-size: 1.5rem; 
+    margin-top: 5px;
+}
+
+}
+
+/* Very small phones (iphone 5) */
+@media screen and (max-width: 350px) {
+
+#left-panel {
+    height: 60%;
+}
+
+#right-panel {
+    height: 40%;
+}
+
+#score-area {margin-top: 5px;}
+
+#input-keyboard .letter {
+    font-size: 2rem;
+    width: 29px;
+}
 
 #balloons {width: 60px;}
 
@@ -331,18 +393,18 @@ header #title {
 
 #meowth {width: 50px;}
 
-#animation-screen {height: 60%;}
+#happy-pikachu {
+    width: 60px; 
+    margin-top: 5px;
 }
 
-/* Very small phones (iphone 5) */
-@media screen and (max-width: 350px) {
+#win-title {
+    font-size: 1.75rem;
+     margin-top: 5px;
+    }
 
-#pokedex {height: 95vh;}
-
-#score-area {margin-top: 5px;}
-
-#input-keyboard .letter {
-    font-size: 1.5rem;
-    width: 28px;
+#win-message {
+    font-size: 1.25rem; 
+    margin-top: 5px;
 }
 }
