@@ -15,7 +15,11 @@ let firstRowHTML = document.getElementById('first-row');
 let secondRowHTML = document.getElementById('second-row');
 let thirdRowHTML = document.getElementById('third-row');
 
-
+const clickAudio = document.getElementById('click-audio');
+const balloonPopAudio = document.getElementById('balloon-pop');
+const pikachuFallAudio = document.getElementById('pikachu-fall');
+const correctInputAudio = document.getElementById('correct-input-audio');
+const scorePing = document.getElementById('score-ping');
 // Wait for DOM to load and then create the input keyboard and start the main game
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -121,9 +125,12 @@ function handleKeyboardInput(input) {
 
     if (!correctGuess) {
 
+        balloonPopAudio.play();
         livesLeft--;
         pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
     } else {
+
+        correctInputAudio.play();
 
         let answerLettersHTML = document.getElementsByClassName('answer-letter');
         let nameGuessed = true;
@@ -138,6 +145,7 @@ function handleKeyboardInput(input) {
 
         if (nameGuessed) {
 
+        scorePing.play();
         incrementFound();
 
         setTimeout(() => {
@@ -159,6 +167,8 @@ function handleKeyboardInput(input) {
 
             button.setAttribute("disabled", "");
         }
+
+        pikachuFallAudio.play();
 
         incrementTrapped();
         pickPokemonFromArray();
@@ -224,6 +234,7 @@ function incrementTrapped() {
  */
 function resetGame(input) {
 
+    clickAudio.play();
     answer = "";
     livesLeft = 7;
     pokemonArrayClone = [...firstGenPokemonArray];
