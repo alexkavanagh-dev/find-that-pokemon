@@ -121,67 +121,41 @@ function handleKeyboardInput(input) {
     input.style.color = "#28abfd";
     input.setAttribute("disabled", "");
 
-    let wasInputCorrect = checkInput(input);
+    let isInputCorrect = checkInput(input);
 
-    if (!wasInputCorrect) {
+    if (isInputCorrect) {
+
+        correctInputAudio.play();
+
+        let isFullNameGuessed = checkIfFullNameGuessed();
+
+        if (isFullNameGuessed) {
+
+        scorePing.play();
+        incrementFound();
+        disableInputKeyboard();
+
+        setTimeout(() => {pickNextPokemon();}, 1000)
+        }
+    } else {
 
         balloonPopAudio.play();
         livesLeft--;
         pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
-    } else {
-
-        correctInputAudio.play();
-
-        let answerLettersHTML = document.getElementsByClassName('answer-letter');
-        let nameGuessed = true;
-
-        for (letter of answerLettersHTML) {
-
-            if (letter.innerHTML === '_') {
-
-                nameGuessed = false;
-            }
-        }
-
-        if (nameGuessed) {
-
-        scorePing.play();
-        incrementFound();
-
-        setTimeout(() => {
-
-            resetKeyboard();
-            pickPokemonFromArray();
-            displayAnswerDashes();
-            livesLeft = 7;
-            pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
-        }, 1000)
-        }
     }
 
     if (livesLeft === 0) {
 
-        let keyboardButtons = document.getElementsByClassName('letter');
-
-        for(button of keyboardButtons) {
-
-            button.setAttribute("disabled", "");
-        }
-
         pikachuFallAudio.play();
-
         incrementTrapped();
-        pickPokemonFromArray();
+        disableInputKeyboard();
 
         trap.src = "assets/images/trapped-pikachu.webp";
         pikachuBalloons.style.visibility = "hidden";
 
         setTimeout(() => {
 
-            resetKeyboard();
-            displayAnswerDashes();
-            livesLeft = 7;
-            pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
+            pickNextPokemon();
             trap.src = "assets/images/trap.webp";
             pikachuBalloons.style.visibility = "visible";
         }, 2000);
@@ -194,7 +168,7 @@ function handleKeyboardInput(input) {
  */
 function checkInput(input) {
 
-    let wasInputCorrect = false; 
+    let isInputCorrect = false; 
 
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
 
@@ -202,12 +176,47 @@ function checkInput(input) {
         
         if (input.innerText === answer.charAt(i)) {
 
-            wasInputCorrect = true;
+            isInputCorrect = true;
             answerLettersHTML[i].innerText = input.innerText;
         }
     }
 
-    return wasInputCorrect;
+    return isInputCorrect;
+}
+
+function disableInputKeyboard() {
+
+    let keyboardButtons = document.getElementsByClassName('letter');
+
+    for(button of keyboardButtons) {
+
+        button.setAttribute("disabled", "");
+    }
+}
+
+function checkIfFullNameGuessed() {
+
+    let answerLettersHTML = document.getElementsByClassName('answer-letter');
+    let isFullNameGuessed = true;
+
+    for (letter of answerLettersHTML) {
+
+        if (letter.innerHTML === '_') {
+
+            isFullNameGuessed = false;
+        }
+    }
+
+    return isFullNameGuessed;
+}
+
+function pickNextPokemon() {
+
+    resetKeyboard();
+    pickPokemonFromArray();
+    displayAnswerDashes();
+    livesLeft = 7;
+    pikachuBalloons.src = `assets/images/pikachu-balloon-${livesLeft}.webp`;
 }
 
 /**
