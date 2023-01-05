@@ -154,7 +154,7 @@ function handleKeyboardInput(input) {
     }
     // if input was incorrect, plays a balloon pop sound, decrements lives left
     // and removes a balloon from pikachu 
-    else {
+    else if (!isInputCorrect) {
 
         balloonPopAudio.play();
         livesLeft--;
@@ -179,7 +179,12 @@ function handleKeyboardInput(input) {
             }, 2000);
         }
     }
+    // Alert user and throw an error if isInputCorrect is not returned as a boolean
+    else {
 
+        alert(`isInputCorrect returned as: ${isInputCorrect}`);
+        throw `isInputCorrect should only be a boolean value. Aborting!`;
+    }
 }
 
 /**
