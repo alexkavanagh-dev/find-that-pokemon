@@ -199,7 +199,7 @@ function checkInput(input) {
 
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
 
-    for (i = 0; i < answer.length; i++) {
+    for (let i = 0; i < answer.length; i++) {
         
         if (input.innerText === answer.charAt(i)) {
 
@@ -218,7 +218,7 @@ function disableInputKeyboard() {
 
     let keyboardButtons = document.getElementsByClassName('letter');
 
-    for(button of keyboardButtons) {
+    for(let button of keyboardButtons) {
 
         button.setAttribute("disabled", "");
     }
@@ -233,7 +233,7 @@ function checkIfFullNameGuessed() {
     let answerLettersHTML = document.getElementsByClassName('answer-letter');
     let isFullNameGuessed = true;
 
-    for (letter of answerLettersHTML) {
+    for (let letter of answerLettersHTML) {
 
         if (letter.innerHTML === '_') {
 
