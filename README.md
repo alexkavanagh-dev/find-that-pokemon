@@ -1,108 +1,175 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+﻿# Find That Pokemon!
+Find That Pokemon! is a Pokemon themed game based on the classic word guessing game: Hangman. It shares the same core concepts as the original Hangman game with a few differences:
 
-Welcome alexkavanagh8,
+- Text, imagery and sound effects are all retro and Pokemon themed. 
+- The words to be guessed are the original 151 Pokemon from the first generation.
+- Rather than the original hangman drawing being done step by step when an incorrect letter is guessed, there is instead a Pikachu flying with seven balloons over a trap and each wrong letter pops a balloon until Pikachu falls to the trap and the game moves on to the next word. 
+- When a word is fully guessed, the players score counter is incremented and the next word is chosen after a short delay.
+- There is an overall goal to try find as many Pokemon as you can. The Pokemon do not repeat so each time Pikachu falls to the trap, that Pokemon has been lost until the game is reset. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+The other core concepts of hangman remain: 
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+- A word to be guessed is shown blanked out with dashes in place of letters and the player must guess letter by letter to find the full word. 
+- If a letter is guessed correctly, the dash(es) representing that letter in the answer are replaced with the letter and a positive ping sound is played. 
+- If a letter is guessed incorrectly, one the players lives (represented by the balloons holding up Pikachu) is lost and a balloon pops with a sound effect. 
+- When all the players lives are lost Pikachu will fall into the trap and then a new word is picked similar to how Hangman works. 
 
-## Gitpod Reminders
+As above, the main aim of the game is to find as many Pokemon as you can of the 151 and at the end there is a screen to congratulate the player on finishing and how many they found. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+Pokemon and all related content are created/owned/copyright of The Pokemon Company/Nintendo/Gamefreak for which I do not take any credit or for the imagery and audio used. The credit section below will show where the images and audio used were taken from. The Pokemon theme was just a more interesting and fun way to make this project. 
 
-`python3 -m http.server`
+[Link to the live project](https://github.com/alexkavanagh-dev/find-that-pokemon)
 
-A blue button should appear to click: _Make Public_,
+![am-i-responsive image](documentation/am-i-responsive.png)
 
-Another blue button should appear to click: _Open Browser_.
+# Features
+## Current Features
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+- Main Game Area
+    - The main game area is front and center when the page loads and styled with CSS to resemble a Pokedex albeit a basic one.  
+    - The title of the game is displayed above the game area/Pokedex in the same pixelated font as the rest of the page.
+    - There is a left and right panel to the Pokedex which contain the core interactive parts of the game and are split by a center hinge.
+    - The background image is a retro styled picture overlooking the ocean, based on the introduction cinematic from Pokemon Emerald. (Credit to the artist in the credit section)
 
-A blue button should appear to click: _Make Public_,
+![full screenshot image](documentation/full-screen.png)
 
-Another blue button should appear to click: _Open Browser_.
+- Left Panel
+    - Contains a large screen for feedback during the game, two smaller screens showing the users current scores and a reset button. 
+    - The large screen displays Pikachu floating with balloons above a trap set by Meowth and reacts to input from the user.
+    - The two smaller score screens display the scores for amount of Pokemon found and times Pikachu has been trapped on retro styled green screens with pixelated black text.
+    - The reset button is styled similar to the other buttons in the game and resemble buttons from a Pokedex. When it is clicked the game resets back to the beginning and useful if the player would like to try again at the end of the game or reset during the game to try get a better score. 
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+![Left panel image](documentation/left-panel.png)
 
-To log into the Heroku toolbelt CLI:
+- Right Panel
+    - Contains a medium sized screen that displays the answer in the top half and a keyboard for input in the bottom half. 
+	- The answer screen is a simple black screen with white text that begins with showing the answer in dashes and will fill out letters accordingly as correct letters are guessed.
+	- The keyboard is a qwerty style keyboard with blue keys and white letters. I chose a qwerty layout over listing letters alphabetically as the alphabet couldn't be divided evenly into 3 or 4 rows to fit where it needed to. Qwerty doesn't divide evenly either but is a layout that people are used to and fitted neatly. 
+	- When the user clicks on a letter, that letter is disabled and blanked out then checked against the answer. The game will react accordingly whether that letter was correct or incorrect.
+	- The keyboard is reset each time either the reset button is clicked, a Pokemon is found or all the players lives are lost.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+![right panel](documentation/right-panel.png)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- Game End Screen
+	-  Replaces the large screen on the left panel when the game is finished to indicate to the player that the game is over.
+	- Shows text to congratulate the player on how many Pokemon they found and thank them for playing.
+	- Shows a happy looking Pikachu with arms in the air to reinforce the congratulations and thanks to the player. 
 
-------
+![game end screen](documentation/game-end-screen.png)
 
-## Release History
+- Audio Feedback
+    - There is audio feedback for clicking the reset button, clicking a correct letter or incorrect letter, finding a Pokemon and Pikachu falling.
+    - All audio is 8bit to keep in theme with the other retro elements. 
+	- The reset button audio is a simple button click sound since it is a neutral action and doesn't need to signify success or failure, just give the player feedback that the button was clicked. 
+	- The correct letter audio is a short positive sounding ping since getting a letter correct is a success and this helps reinforce a positive feedback for the player. 
+	- The incorrect letter audio is a short pop sound effect to represent the balloon popping from Pikachu and provide a small negative feedback without being too harsh. 
+	- The audio played for finding a Pokemon is a more emphatic ping noise to elicit a stronger positive feeling from the player and signify that a point has been gained. 
+	- The audio played when all the balloons have popped is a falling sound to represent Pikachu falling to the trap and provide a stronger negative feedback for the player. 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+## Possible Future Features
+- Allow user to select between different generations of Pokemon beyond just the first generation.
+- Allow user to select multiple generations at once for a tougher challenge. 
+- Allow the user to input letters from their physical keyboard in addition to clicking the virtual one. 
+- An optional timer to allow another layer of challenge for the player.
+- Save users progress locally to show them their high score from previous attempts.
+- An online leaderboard showing submitted high scores and times if the the timer feature. 
+- Briefly show an image on the large screen on the left panel of a Pokemon when it has been found.
+- A hard mode where if Pikachu is trapped once, the user has to restart all over. 
+- The lights in the top of the left panel could be used to provide more feedback such as lighting up on inputs or correct/incorrect answers.  
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+# Testing
+## Validator Testing
+- HTML
+    - No errors were found when run through the [W3C MarkUp Validator](https://validator.w3.org/).
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+![html validation](documentation/html-validator.png)
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- CSS
+    - No errors were found when run through the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/).
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+![css validation](documentation/css-validator.png)
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+- JavaScript
+	- No major issues found when run through a linter. [JSHint](https://jshint.com/).
+- Lighthouse
+    - I confirmed through the lighthouse tester that the website has adequate performance and is sufficiently accessible.
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+![lighthouse results](documentation/lighthouse-test.png)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Compatibility Testing
+- I checked that the website works as intended on different desktop browsers: Chrome, FireFox and Edge.
+- I checked that the website works as intended on iPhone and several android phones with Chrome and Firefox. 
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+## Manual Testing
+ I have intentionally left it in the JavaScript that when a new answer is picked it will log it out to the console to make testing easier for anyone unfamiliar with Pokemon. 
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+| Test Label             | Test Action                   | Expected Result                                                                                                                                                      | Test Outcome |
+|------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| Reset Game             | Click reset button            | Player scores and lives reset back to zero, input keyboard reset, new answer picked and displayed in dashes.                                                         | PASS         |
+| Input Letter           | Click letter on keyboard      | Selected letter is disabled, blanked out and checked against answer.                                                                                                 | PASS         |
+| Correct Letter Input   | Input letter from answer      | Positive ping sound plays, appropriate dash in answer is replaced with the letter.                                                                                   | PASS         |
+| Incorrect Letter Input | Input letter not from answer  | Balloon pop sound plays, player lives decrements/balloon on screen disappears.                                                                                       | PASS         |
+| All Lives Lost         | Player has 7 incorrect inputs | Falling sound plays, image shows Pikachu in the trap cage, trapped score increments. <br>After 2 second delay, keyboard is reset, new answer is picked and displayed | PASS         |
+| Full Answer Guessed    | Player has all letters found  | Positive ping sound plays, Pokemon found score increments. <br>After 1 second delay, keyboard is reset, new answer is picked and displayed.                          | PASS         |
+| End of Game            | All answers have been used    | Input keyboard disables, win screen disables in place of the large screen on the left panel.                                                                         | PASS         |
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Responsive Testing
+- I checked that the website is responsive, looks good and works well on different screen sizes from my own desktop monitor and for many tablets and phones as small as the iPhone 5 using responsive developer tools.
+-  I double checked the same as above on an real phones to ensure proper responsiveness. 
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Fixed Bugs
+- When the delay was added to the next Pokemon being picked, the keyboard was still active so the player could add inputs during that delay and still affect their lives left and scores. This was fixed by adding a function to disable the keyboard whenever the player doesn't need to input. 
+- Similar to the above, the rest button could be used during these delays and cause issues. It was fixed the same way bu disabling it when the player doesn't need to input. 
+- This wasn't really a bug but something I found interesting and tested. Instead of the current method of using a cloned array from the main Pokemon array to select a new answer and then remove that answer from the cloned array, I did try to use sets to keep track of the Pokemon already used but thought it might be inconsistent in how long an answer would be picked. Using sets, a random number was used to pick a Pokemon from the main array and checked against the Pokemon already used set before using it as the answer. If it was already in the set, a new Pokemon would be picked again at random and checked again. If it was not in the set, it would be added to the set and used as the next answer. Towards the end of the game this meant you would very likely have to retry many times to get a Pokemon that hadn't already been used so I did test this using performance.now() and a simple loop to get the average time of the last Pokemon being picked. After a few thousand iterations, the average time to pick the last Pokemon was around 3.5 milliseconds but could sometimes take nearly 1000 retries and 50 milliseconds so how long it takes was really up to chance and could take any amount of time. Realistically this doesn't matter for a project this size but if there was more Pokemon added or the game was part of a bigger site it could potentially be an issue as performance is depending luck. 
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+## Unfixed Bugs
+- No unfixed bugs that I am aware of. 
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+# Deployment
+The website is currently deployed to GitHub Pages.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+The steps to deploy it were as follows: 
+- Go to the repository that is to be deployed.
+- In that repository, navigate to the settings page.
+- In the sidebar of the settings page, open the Pages tab. 
+- In the branch section, use the drop down menu to select which branch to deploy. For me, it was just the main branch. 
+- Click the save button and shortly after you can refresh the page where a link will now show up to the deployed website.  
 
-------
+Once deployed to GitHub Pages, the website will automatically update with new changes when commits are made to the main branch.
 
-## FAQ about the uptime script
+This repository can be cloned by entering the command `git clone https://github.com/alexkavanagh-dev/find-that-pokemon.git` into the terminal of your chosen IDE.
 
-**Why have you added this script?**
+The link for my website on GitHub Pages is here: https://alexkavanagh-dev.github.io/find-that-pokemon/
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+# Credits
+## Content
 
-**How will this affect me?**
+- As in the introduction, Pokemon and all related content are created/owned/copyright of The Pokemon Company/Nintendo/Gamefreak for which I take no credit. 
+- All images and sound effects were taken from different places on the internet and will be individually credited below. 
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+## Images
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+Some images were edited by myself such as the Flying Pikachu image, I duplicated some of the balloons so that there would be seven in total and the cage and Trapped Pikachu being combined for use in the project. 
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+Links for any images used here: 
+- [Flying Pikachu](https://www.reddit.com/r/pokemongo/comments/i0yd33/recolour_of_the_classic_pokemon_yellow_balloon/)
+- [Meowth](https://www.deviantart.com/nonhovoglia/art/Meowth-Pixel-Art-671366525)
+- [Cage Trap](https://www.artstation.com/artwork/DAOeZn)
+- [Background Image](https://www.reddit.com/r/wallpapers/comments/1tqe9k/update_new_version_of_the_8bit_day_wallpaper_set/)
+- [Happy Pikachu](https://aminoapps.com/c/pokemon-amino-ptbr/page/blog/pixel-desenho-charmander-pikachu-alakasam-e-eevee/baYl_d4UouBzpjYGVpXqDLg433pve2a2oa)
+- [Trapped Pikachu](https://www.deviantart.com/animegamerfreak/art/Pixel-Pikachu-304726012)
+- [PokeBall Favicon](https://www.favicon.cc/?action=icon&file_id=883760)
+- [Pixlr](https://pixlr.com/) was used to edit images.
 
-**So….?**
+## Audio
+- [Balloon Pop](https://freesound.org/people/LittleRobotSoundFactory/sounds/270316/)
+- [Button Click](https://freesound.org/people/EminYILDIRIM/sounds/536108/)
+- [Correct Input Ping](https://freesound.org/people/LittleRobotSoundFactory/sounds/270304/)
+- [Pokemon Found Ping](https://freesound.org/people/LittleRobotSoundFactory/sounds/270303/)
+- [Pikachu Falling](https://freesound.org/people/MentosLat/sounds/417486/)
+- [Audacity](https://www.audacityteam.org/) was used to trim some sounds slightly as they had some dead air at the end. 
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
-
----
-
-Happy coding!
+## Code
+- The font used on this website is the 'VT323' font imported from Google Fonts.
+-  www.w3schools.com/ and https://developer.mozilla.org/en-US/ were great resources throughout this whole project. 
+- The Pokemon array was copied from here: https://gist.github.com/octalmage/6936761
