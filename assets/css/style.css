@@ -94,17 +94,9 @@ header #title {
     border: 3px solid #111;
 }
 
-#red-light {
-    background-color: red;
-}
-
-#yellow-light {
-    background-color: yellow;
-}
-
-#green-light {
-    background-color: green;
-}
+#red-light {background-color: red;}
+#yellow-light {background-color: yellow;}
+#green-light {background-color: green;}
 
 /* Animation screen */
 #animation-screen {
@@ -140,7 +132,6 @@ header #title {
     width: 125px;
     position: relative;
     margin: auto;
-
     animation-duration: 1.5s;
     animation-name: floating;
     animation-iteration-count: infinite;
@@ -148,13 +139,9 @@ header #title {
 }
   
   @keyframes floating {
-    from {
-      top: 20%;
-    }
+    from {top: 20%;}
   
-    to {
-      top: 5%;
-    }
+    to {top: 5%;}
   }
   
 /* Win Screen (Shows when game is over)*/
